@@ -1,19 +1,34 @@
+import { useState } from 'react'
 
+const PersonForm = ({ createPhone }) => {
+  const [newName, setNewName] = useState('')  //controller for input element
+  const [newPhone, setNewPhone] = useState('')
 
-const PersonForm = (props) => {
-    return(
-        <form onSubmit = {props.AddPhone}>
-        <div>
-          name: <input value = {props.newName} onChange={props.handleNameChange}/>
-        </div>
-        <div>
-          number: <input value = {props.newPhone} onChange={props.handlePhoneChange}/> 
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-    )
+  const addPhone = (event) => {
+    event.preventDefault()
+    const doesChange = createPhone({
+      name: newName,
+      number: newPhone
+    })
+
+    if(doesChange){
+      setNewName('')
+      setNewPhone('')
+    }  
+  }
+  return(
+      <form onSubmit = {addPhone}>
+      <div>
+        name: <input value = {newName} onChange={event => setNewName(event.target.value)}/>
+      </div>
+      <div>
+        number: <input value = {newPhone} onChange={({target}) => setNewPhone(target.value)}/> 
+      </div>
+      <div>
+        <button type="submit">add</button>
+      </div>
+    </form>
+  )
 }
 
 export default PersonForm
