@@ -17,7 +17,7 @@ const PersonForm = ({ createPhone }) => {
     }  
   }
   return(
-      <form onSubmit = {addPhone}>
+      <form onSubmit = {addPhone} className="formBlock">
       <div>
         name: <input value = {newName} onChange={event => setNewName(event.target.value)}/>
       </div>
